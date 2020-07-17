@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+.titulo{
+  font-size: larger;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.playground{
+  margin-left: 100px;
+  margin-top: 90px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
-.App-link {
-  color: #61dafb;
+
+.arma{
+  width: 150px;
+  height: 35px;
+  color: rgb(226, 148, 52);
+  background-color: rgb(66, 52, 35);
+  border-color: gold;
+}
+.arma-Piedra{
+  margin-left: 30px;
+  margin-bottom: 30px
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.arma-Papel{
+  margin-left: 75px;
+  margin-bottom: 30px
+}
+.arma-Tijera{
+  margin-left: 135px;
+  margin-bottom: 30px
+}
+
+.arma-Lagarto{
+  margin-left: 190px;
+  margin-bottom: 30px
+}
+.arma-Spock{
+  margin-left: 300px;
+}
+
+.seleccion{
+  position: fixed;
+  margin-left: 350px;
+  margin-top:75px;
 }
