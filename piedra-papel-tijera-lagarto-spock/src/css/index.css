@@ -1,8 +1,14 @@
 body {
+  background-image:url(
+      "https://addons-media.operacdn.com/media/CACHE/images/themes/25/23525/1.0-rev2/images/0717fd72-d1eb-4ac8-acd7-b210e87113e4/d6d2b7b2a548004c14969680cc32f966.jpg"
+      );
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

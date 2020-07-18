@@ -1,6 +1,13 @@
 import React from 'react';
 import './css/App.css';
-import Arma from './Arma'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Arma from './Arma';
+import piedra from './images/piedra.png'
+import papel from './images/papel.png'
+import tijera from './images/tijera.png'
+import lagarto from './images/lagarto.png'
+import spock from './images/spock.png'
+import none from './images/none.png'
 
 class App extends React.Component {
     constructor(){ 
@@ -17,35 +24,63 @@ class App extends React.Component {
       this.setState({
         jugador: arma
       })
-
+       
     }
 
     componentDidUpdate(){
       console.log(this.state.jugador)
+      
     }
 
-    render(){
-  return (
-    <div className="container">
-        <div id="titulo">     
-          <a className= "titulo piedra">Piedra </a>
-          <a className= "titulo papel">Papel </a> 
-          <a className= "titulo tijera">Tijera </a> 
-          <a className= "titulo lagarto">Lagarto </a> 
-          <a className= "titulo spock">Spock</a>
-        </div>    
+  render(){
+    const {jugador, bot} = this.state
+   
+    let 
+     seleccion= <img src={
+      jugador === "Piedra" ? piedra :
+      jugador === "Papel" ? papel :
+      jugador === "Tijera" ? tijera  :
+      jugador === "Lagarto" ? lagarto : 
+      jugador === "Spock" ? spock : none
+      } className="img-arma" alt= {`${jugador}`}></img>
+
+    let
+      seleccion2=  <img src={
+        bot === "Piedra" ? piedra :
+        bot === "Papel" ? papel :
+        bot === "Tijera" ? tijera  :
+        bot === "Lagarto" ? lagarto : 
+        bot === "Spock" ? spock : none
+        } className="img-arma" alt= {`${bot}`}></img>
+    
+      return (
+    <div className="container-fluid">
         
-        <div className="playground">
+        <div className="d-flex ">
+         <div className="col player-one"> 
           <div className="armas">
-          <Arma nombre="Piedra" handleSelection={this.handleSelection} id="piedra" />
-          <Arma nombre="Papel" handleSelection={this.handleSelection} id="papel"/>
-          <Arma nombre="Tijera" handleSelection={this.handleSelection} id="tijera" />
-          <Arma nombre="Lagarto" handleSelection={this.handleSelection} id="lagarto" />
-          <Arma nombre="Spock" handleSelection={this.handleSelection} id="spock"/>
+            <Arma nombre="Piedra" handleSelection={this.handleSelection} id="Piedra" />
+            <Arma nombre="Papel" handleSelection={this.handleSelection} id="Papel"/>
+            <Arma nombre="Tijera" handleSelection={this.handleSelection} id="Tijera" />
+            <Arma nombre="Lagarto" handleSelection={this.handleSelection} id="Lagarto" />
+            <Arma nombre="Spock" handleSelection={this.handleSelection} id="Spock"/>
           </div>
           <div className="seleccion">
-            {this.state.jugador}
+            {seleccion}
           </div>
+            <button  type="button" className="ready" onClick={e=> this.setState({jugador: ''})}>
+              Listo!
+            </button>
+          </div>
+          
+         <div className="col player-two">
+            <div className="seleccion2">
+            {seleccion2}
+            </div>  
+         </div>
+        
+         
+         
         </div>
           
   </div>

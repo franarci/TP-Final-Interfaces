@@ -1,46 +1,79 @@
+
 .titulo{
-  font-size: larger;
+ display:flex;
+ flex-direction: column;
 }
-.playground{
-  margin-left: 100px;
+
+
+
+.player-one{
+
   margin-top: 90px;
   display: flex;
   flex-direction: column;
-  
 }
 
+.img-arma{
+  height:300px;
+  float: left;
+  display: block;
+  position: absolute;  
+}
 
 .arma{
   width: 150px;
-  height: 35px;
+  height: 40px;
   color: rgb(226, 148, 52);
   background-color: rgb(66, 52, 35);
   border-color: gold;
 }
+.arma:hover{
+  width: 150px;
+  height: 40px;
+  color: rgb(66, 52, 35);
+  background-color: gold;
+}
 .arma-Piedra{
-  margin-left: 30px;
+  margin-left: 100px;
   margin-bottom: 30px
 }
 
 .arma-Papel{
-  margin-left: 75px;
+  margin-left: 67px;
   margin-bottom: 30px
 }
 .arma-Tijera{
-  margin-left: 135px;
+  margin-left: 50px;
   margin-bottom: 30px
 }
 
 .arma-Lagarto{
-  margin-left: 190px;
+  margin-left: 67px;
   margin-bottom: 30px
 }
 .arma-Spock{
-  margin-left: 300px;
+  margin-left: 100px;
 }
 
 .seleccion{
   position: fixed;
-  margin-left: 350px;
-  margin-top:75px;
+  margin-top: 10px;
+  margin-left: 220px;
+}
+
+.seleccion2{
+  margin-top: 87px;
+  position: fixed;
+ float: inherit;
+}
+
+.ready{
+  margin-left: 150px;
+  margin-top: 15px;
+  position: relative;
+  max-width: 360px;
+  height: 45px;
+  background-color: gold;
+  border-radius: 45%;
+  
 }
