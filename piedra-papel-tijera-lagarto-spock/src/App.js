@@ -37,20 +37,22 @@ class App extends React.Component {
       this.setState({
         arma1: this.state.jugador1,
         jugador1: ''})
-      this.refs.play1.setAttribute("disabled","disabled")
+      
       
       if(!this.state.dosJugadores){
         this.contiendaContraBot()             
+      } else {
+        this.refs.play1.setAttribute("disabled","disabled")
       }
     }
   }
   
   contiendaContraBot(){
-    const armas= ["Piedra","Papel","Tijera","Lagarto","Spock"]
+    const armas= ["Piedra2" ,"Papel2" ,"Tijera2" ,"Lagarto2" ,"Spock2"]
     this.setState({
-      jugador2: armas[Math.floor(Math.random * armas.length)]
+      jugador2: armas[Math.floor(Math.random() * armas.length)]
     })
-    console.log(armas[Math.floor(Math.random * armas.length)])
+    
   }
 
   render(){
