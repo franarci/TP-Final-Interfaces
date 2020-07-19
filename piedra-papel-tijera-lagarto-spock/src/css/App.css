@@ -42,43 +42,43 @@
   background-color: gold;
 }
 
-.arma-Piedra{
+#Piedra{
   margin-left: 100px;
   margin-bottom: 30px
 }
 
-.arma-Papel{
+#Papel{
   margin-left: 67px;
   margin-bottom: 30px
 }
-.arma-Tijera{
+#Tijera{
   margin-left: 50px;
   margin-bottom: 30px
 }
 
-.arma-Lagarto{
+#Lagarto{
   margin-left: 67px;
   margin-bottom: 30px
 }
-.arma-Spock{
+#Spock{
   margin-left: 100px;
 }
 
-.arma-Piedra2{
+#Piedra2{
  margin-bottom: 30px;
 }
 
-.arma-Papel2{
+#Papel2{
   margin-left: 33px;
   margin-bottom: 30px
 }
 
-.arma-Tijera2{
+#Tijera2{
   margin-left: 50px;
   margin-bottom: 30px
 }
 
-.arma-Lagarto2{
+#Lagarto2{
   margin-left: 33px;
   margin-bottom: 30px
 }

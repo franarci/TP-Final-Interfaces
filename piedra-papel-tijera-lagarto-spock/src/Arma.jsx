@@ -1,19 +1,29 @@
 import React from 'react'
 import './css/App.css';
 
-function Arma ({nombre,handleSelection}) {
+function Arma ({nombre,handleSelection,j}) {
 
+  if(j==="uno") {
     return(
       <div className= {`arma-${nombre}`}> 
-      
-        <button id={`${nombre}`} type="button" className ="arma" 
+            <button id={`${nombre}`} type="button" className ="arma" 
             onClick={event =>
-           handleSelection(nombre)} >
-              {nombre}
+                  handleSelection(nombre,j)} >
+                  {nombre}
         </button>
       </div>
     )
-  
+          } else {
+            return(
+              <div className= {`arma-${nombre} p2`}> 
+                <button id={`${nombre}2`} type="button" className ="arma" 
+                  onClick={event =>
+                    handleSelection(nombre)} disabled >
+                    {nombre}
+                </button>
+              </div>
+)
+  }
 }
 
 export default Arma;

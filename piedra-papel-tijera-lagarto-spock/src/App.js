@@ -16,18 +16,23 @@ class App extends React.Component {
         jugador1: '',
         jugador2: '',
         ganador: '',
-        dosJugadores: false,
+        dosJugadores: true,
         arma1:'',
         arma2:''
       }
       this.handleSelection = this.handleSelection.bind(this)
     }
 
-     handleSelection =(arma)=> {
+     handleSelection =(arma,jugador)=> {
+       if(jugador==="uno"){
       this.setState({
         jugador1: arma
       })
-       
+    } else {
+      this.setState({
+        jugador2: arma
+      })
+    }
     }
 
   handlePlay1(){
@@ -43,16 +48,35 @@ class App extends React.Component {
         this.contiendaContraBot()             
       } else {
         this.refs.play1.setAttribute("disabled","disabled")
+        this.refs.play2.removeAttribute("disabled")
+        document.getElementById("Piedra").disabled=true
+        document.getElementById("Papel").disabled=true
+        document.getElementById("Tijera").disabled=true
+        document.getElementById("Lagarto").disabled=true
+        document.getElementById("Spock").disabled=true
+
+        document.getElementById("Piedra2").disabled=false
+        document.getElementById("Papel2").disabled=false
+        document.getElementById("Tijera2").disabled=false
+        document.getElementById("Lagarto2").disabled=false
+        document.getElementById("Spock2").disabled=false
       }
+      this.resultados()
     }
   }
   
   contiendaContraBot(){
     const armas= ["Piedra2" ,"Papel2" ,"Tijera2" ,"Lagarto2" ,"Spock2"]
     this.setState({
-      jugador2: armas[Math.floor(Math.random() * armas.length)]
+      jugador2: armas[Math.floor(Math.random() * armas.length)],
+      arma2: this.state.jugador2
     })
-    
+  }
+
+  resultados(){
+    this.setState({
+      ganador: ''
+    })
   }
 
   render(){
@@ -74,10 +98,10 @@ class App extends React.Component {
        seleccion2=<img className="none" src={none}></img>
       } else{
         seleccion2=  <img src={
-        jugador2 === "Piedra2" ? piedra :
-        jugador2 === "Papel2" ? papel :
-        jugador2 === "Tijera2" ? tijera  :
-        jugador2 === "Lagarto2" ? lagarto : spock 
+        jugador2 === "Piedra" ? piedra :
+        jugador2 === "Papel" ? papel :
+        jugador2 === "Tijera" ? tijera  :
+        jugador2 === "Lagarto" ? lagarto : spock 
         } className="img-arma-2" alt= {jugador2}></img>
       }
 
@@ -89,11 +113,11 @@ class App extends React.Component {
         <div className="col container player1"> 
           <div className="d-flex">
             <div className="armas">
-              <Arma nombre="Piedra"  handleSelection={this.handleSelection} id="Piedra" />
-              <Arma nombre="Papel"   handleSelection={this.handleSelection} id="Papel"/>
-              <Arma nombre="Tijera"  handleSelection={this.handleSelection} id="Tijera" />
-              <Arma nombre="Lagarto" handleSelection={this.handleSelection} id="Lagarto" />
-              <Arma nombre="Spock"   handleSelection={this.handleSelection} id="Spock"/>
+              <Arma nombre="Piedra"  j="uno" handleSelection={this.handleSelection}  />
+              <Arma nombre="Papel"   j="uno" handleSelection={this.handleSelection} />
+              <Arma nombre="Tijera"  j="uno" handleSelection={this.handleSelection}  />
+              <Arma nombre="Lagarto" j="uno" handleSelection={this.handleSelection}  />
+              <Arma nombre="Spock"   j="uno" handleSelection={this.handleSelection} />
             </div>
             <div className="seleccion">
               {seleccion}
@@ -110,11 +134,11 @@ class App extends React.Component {
               {seleccion2}
             </div>
             <div className="armas2">
-              <Arma nombre="Piedra2" rf="play2" handleSelection={this.handleSelection} id="Piedra">Piedra</Arma>
-              <Arma nombre="Papel2"  rf="play2" handleSelection={this.handleSelection} id="Papel"/>
-              <Arma nombre="Tijera2" rf="play2" handleSelection={this.handleSelection} id="Tijera" />
-              <Arma nombre="Lagarto2"rf="play2" handleSelection={this.handleSelection} id="Lagarto" />
-              <Arma nombre="Spock2"  rf="play2" handleSelection={this.handleSelection} id="Spock"/>
+              <Arma nombre="Piedra"  j="dos" handleSelection={this.handleSelection} />
+              <Arma nombre="Papel"   j="dos" handleSelection={this.handleSelection} />
+              <Arma nombre="Tijera"  j="dos" handleSelection={this.handleSelection} />
+              <Arma nombre="Lagarto" j="dos" handleSelection={this.handleSelection} />
+              <Arma nombre="Spock"   j="dos" handleSelection={this.handleSelection} />
             </div>
           </div>  
           <button ref="play2" type="button" className="btn btn-warning play2" onClick={e=>this.handlePlay2()} disabled>
