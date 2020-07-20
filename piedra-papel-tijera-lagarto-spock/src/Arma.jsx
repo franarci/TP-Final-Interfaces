@@ -6,7 +6,7 @@ function Arma ({nombre,handleSelection,j,dosJugadores}) {
   if(j==="uno") {
     return(
       <div className= {`arma-${nombre}`}> 
-            <button id={`${nombre}`} type="button" className ="arma" 
+            <button id={`${nombre}`} type="button" className ="button arma" 
             onClick={event =>
                   handleSelection(nombre,j)} >
                   {nombre}
@@ -16,7 +16,7 @@ function Arma ({nombre,handleSelection,j,dosJugadores}) {
                 } else if(dosJugadores){
                     return(
                       <div className= {`arma-${nombre} p2`}> 
-                        <button id={`${nombre}2`} type="button" className ="arma" 
+                        <button id={`${nombre}2`} type="button" className ="button arma" 
                           onClick={event =>
                             handleSelection(nombre,j)} >
                             {nombre}
@@ -26,7 +26,7 @@ function Arma ({nombre,handleSelection,j,dosJugadores}) {
                                 } else {
                                   return(
                                     <div className= {`arma-${nombre} p2`}> 
-                                      <button id={`${nombre}2`} type="button" className ="arma" 
+                                      <button id={`${nombre}2`} type="button" className ="button arma" 
                                         onClick={event =>
                                           handleSelection(nombre,j)} disabled>
                                           {nombre}

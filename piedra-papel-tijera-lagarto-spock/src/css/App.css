@@ -1,118 +1,135 @@
-
 .titulo{
- display:flex;
- flex-direction: column;
-}
-
-
-
-.player{
-  margin-top: 90px;
-  display: flex;
+  display:flex;
   flex-direction: column;
+ }
+ 
+ 
+ 
+ .player{
+   margin-top: 90px;
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ 
+ .img-arma{
+   height:300px;
+   
+ }
+ 
+ .none{height:300px}
+ .img-arma-2{
+ 
+   height:300px;
+   -webkit-transform: scaleX(-1);
+   transform: scaleX(-1);
+ }
+ 
+ .arma{
+   width: 150px;
+   height: 40px;
+   color: rgb(226, 148, 52);
+   background-color: rgb(66, 52, 35);
+   border-color: gold;
+ }
+ 
+ .arma:active{
+   width: 150px;
+   height: 40px;
+   color: rgb(66, 52, 35);
+   background-color: gold;
+ }
+ 
+ .arma:disabled{
+   opacity: 0.4;
+ }
+ 
+ #Piedra{
+   margin-left: 100px;
+   margin-bottom: 30px
+ }
+ 
+ #Papel{
+   margin-left: 67px;
+   margin-bottom: 30px
+ }
+ #Tijera{
+   margin-left: 50px;
+   margin-bottom: 30px
+ }
+ 
+ #Lagarto{
+   margin-left: 67px;
+   margin-bottom: 30px
+ }
+ #Spock{
+   margin-left: 100px;
+ }
+ 
+ #Piedra2{
+  margin-bottom: 30px;
+ }
+ 
+ #Papel2{
+   margin-left: 33px;
+   margin-bottom: 30px
+ }
+ 
+ #Tijera2{
+   margin-left: 50px;
+   margin-bottom: 30px
+ }
+ 
+ #Lagarto2{
+   margin-left: 33px;
+   margin-bottom: 30px
+ }
+ 
+ 
+ .seleccion{
+   margin-top: 10px;
+   margin-left: 15px;
+ }
+ 
+ .seleccion2{
+   margin-top: 10px;
+   margin-right: 15px;
+ }
+ 
+ .btn{
+   margin-top: 15px;
+   position: relative;
+   max-width: 360px;
+   height: 45px;
+   border-radius: 7%;
+ }
+ 
+ .play1{
+   margin-left: 150px;
+ }
+ 
+ .play2{
+   margin-left: 55px;
+ }
+ 
+ .btn-warning:disabled{
+   background-color: grey;
+ }
+
+.background{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.img-arma{
-  height:300px;
-  
+.resultados{
+   width: 100%;
+   background-color: white;
 }
 
-.none{height:300px}
-.img-arma-2{
-
-  height:300px;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
-.arma{
-  width: 150px;
-  height: 40px;
-  color: rgb(226, 148, 52);
-  background-color: rgb(66, 52, 35);
-  border-color: gold;
-}
-
-.arma:active{
-  width: 150px;
-  height: 40px;
-  color: rgb(66, 52, 35);
-  background-color: gold;
-}
-
-.arma:disabled{
-  opacity: 0.4;
-}
-
-#Piedra{
-  margin-left: 100px;
-  margin-bottom: 30px
-}
-
-#Papel{
-  margin-left: 67px;
-  margin-bottom: 30px
-}
-#Tijera{
-  margin-left: 50px;
-  margin-bottom: 30px
-}
-
-#Lagarto{
-  margin-left: 67px;
-  margin-bottom: 30px
-}
-#Spock{
-  margin-left: 100px;
-}
-
-#Piedra2{
- margin-bottom: 30px;
-}
-
-#Papel2{
-  margin-left: 33px;
-  margin-bottom: 30px
-}
-
-#Tijera2{
-  margin-left: 50px;
-  margin-bottom: 30px
-}
-
-#Lagarto2{
-  margin-left: 33px;
-  margin-bottom: 30px
-}
-
-
-.seleccion{
-  margin-top: 10px;
-  margin-left: 15px;
-}
-
-.seleccion2{
-  margin-top: 10px;
-  margin-right: 15px;
-}
-
-.btn{
-  margin-top: 15px;
-  position: relative;
-  max-width: 360px;
-  height: 45px;
-  border-radius: 7%;
-}
-
-.play1{
-  margin-left: 150px;
-}
-
-.play2{
-  margin-left: 55px;
-}
-
-.btn-warning:disabled{
-  background-color: grey;
-}

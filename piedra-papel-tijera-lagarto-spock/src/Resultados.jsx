@@ -1,9 +1,14 @@
 import React from 'react'
 
-function Resultados() {
+function Resultados({jugador1,jugador2,partidaNueva,dosJugadores}) {
+    console.log(dosJugadores)
     return(
-        <div class="container">
-            <h1>Holaaaaaaa!</h1>    
+        <div className="background">
+            <div className="resultados">
+                <div className="container res-container">
+                     <button type="button" className="btn btn-warning" onClick={e=>partidaNueva(dosJugadores)}></button>
+                </div>
+            </div>    
         </div>
 
     )

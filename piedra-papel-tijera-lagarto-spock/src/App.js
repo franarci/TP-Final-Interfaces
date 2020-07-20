@@ -17,23 +17,20 @@ class App extends React.Component {
         mostrarResultados:false,
         jugador1: '',
         jugador2: '',
-        ganador: '',
         dosJugadores: false,
         arma1:'',
-        arma2:''
+        arma2:'',
+        score1:0,
+        score2:0,
       }
       this.handleSelection = this.handleSelection.bind(this)
       this.contiendaContraBot = this.contiendaContraBot.bind(this)
       this.handlePlay1=this.handlePlay1.bind(this)
       this.handlePlay2=this.handlePlay2.bind(this)   
-      this.handleChange=this.handleChange.bind(this)
+
+      this.partidaNueva=this.partidaNueva.bind(this)
     }
 
-     handleChange(){
-       this.setState({
-         hidePlayground:true
-       })
-     }
 
      handleSelection =(arma,jugador)=> {
        if(jugador==="uno"){
@@ -100,7 +97,7 @@ class App extends React.Component {
     this.handleSelection(jugador2, "dos")   
   
   }
-  resultados(props,state){
+  resultados(){
     const {arma1, arma2, jugador1,jugador2} = this.state
 
     if(jugador1==='' &&
@@ -113,6 +110,25 @@ class App extends React.Component {
 
   mostrarResultados = () => {
     this.setState({mostrarResultados:true})
+  }
+
+  partidaNueva = (dosJugadores) => {
+    this.setState({
+      mostrarResultados:false,
+      jugador1:'',
+      jugador2:'',
+      arma1:'',
+      arma2:'',
+      dosJugadores:dosJugadores
+    })
+     if(this.state.dosJugadores){
+      document.querySelectorAll(".button").forEach(elem => {
+        elem.disabled = false;
+    });
+    }
+  }
+  componentDidUpdate(){
+    console.log("updated", this.state)
   }
 
   render(){
@@ -142,15 +158,23 @@ class App extends React.Component {
       }
      let readyP2;
       if(!dosJugadores){
-        readyP2=<button ref="play2" type="button" className="btn btn-warning play2" onClick={e=>this.handlePlay2()} disabled>
+        readyP2=<button ref="play2" type="button" className="button btn btn-warning play2" onClick={e=>this.handlePlay2()} disabled>
                   Listo!
                 </button>
       }else{
-        readyP2=<button ref="play2" type="button" className="btn btn-warning play2" onClick={e=>this.handlePlay2()}>
+        readyP2=<button ref="play2" type="button" className="button btn btn-warning play2" onClick={e=>this.handlePlay2()}>
                   Listo!
                 </button>
 
     }
+
+    let gameMode;
+      if(this.state.dosJugadores){
+        gameMode = <button type="button" className="btn btn-warning" onClick={e=> this.setState({dosJugadores:false})}>1P</button>
+      } else {
+        gameMode = <button type="button" className="btn btn-warning" onClick={e=> this.setState({dosJugadores:true})}>2P</button>
+      }
+
 
       return (
   <>      
@@ -171,7 +195,7 @@ class App extends React.Component {
               {seleccion}
             </div>
           </div>
-          <button ref="play1" type="button" className="btn btn-warning play1" onClick={e=>this.handlePlay1()}>
+          <button ref="play1" type="button" className="button btn btn-warning play1" onClick={e=>this.handlePlay1()}>
               Listo!
           </button>
         </div>
@@ -191,9 +215,10 @@ class App extends React.Component {
           </div>  
           {readyP2}
         </div>
+        {gameMode}
       </div>
     </div>
-   {mostrarResultados && <Resultados />}
+   {mostrarResultados && <Resultados jugador1={this.state.arma1} jugador2={this.state.arma2} partidaNueva={this.partidaNueva} dosJugadores={this.state.dosJugadores}/>}
    </> 
   );
   }
