@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/App.css';
 
-function Arma ({nombre,handleSelection,j}) {
+function Arma ({nombre,handleSelection,j,dosJugadores}) {
 
   if(j==="uno") {
     return(
@@ -12,18 +12,28 @@ function Arma ({nombre,handleSelection,j}) {
                   {nombre}
         </button>
       </div>
-    )
-          } else {
-            return(
-              <div className= {`arma-${nombre} p2`}> 
-                <button id={`${nombre}2`} type="button" className ="arma" 
-                  onClick={event =>
-                    handleSelection(nombre)} disabled >
-                    {nombre}
-                </button>
-              </div>
-)
-  }
+          )
+                } else if(dosJugadores){
+                    return(
+                      <div className= {`arma-${nombre} p2`}> 
+                        <button id={`${nombre}2`} type="button" className ="arma" 
+                          onClick={event =>
+                            handleSelection(nombre,j)} >
+                            {nombre}
+                        </button>
+                      </div>
+                    )
+                                } else {
+                                  return(
+                                    <div className= {`arma-${nombre} p2`}> 
+                                      <button id={`${nombre}2`} type="button" className ="arma" 
+                                        onClick={event =>
+                                          handleSelection(nombre,j)} disabled>
+                                          {nombre}
+                                      </button>
+                                    </div>
+                                  )
+                                }
 }
 
 export default Arma;

@@ -6,7 +6,7 @@
 
 
 
-.player1{
+.player{
   margin-top: 90px;
   display: flex;
   flex-direction: column;
@@ -20,8 +20,7 @@
 
 .none{height:300px}
 .img-arma-2{
- 
-  margin-right: 200px;
+
   height:300px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -35,11 +34,15 @@
   border-color: gold;
 }
 
-.arma:hover{
+.arma:active{
   width: 150px;
   height: 40px;
   color: rgb(66, 52, 35);
   background-color: gold;
+}
+
+.arma:disabled{
+  opacity: 0.4;
 }
 
 #Piedra{
@@ -107,7 +110,7 @@
 }
 
 .play2{
-  margin-left: 50px;
+  margin-left: 55px;
 }
 
 .btn-warning:disabled{

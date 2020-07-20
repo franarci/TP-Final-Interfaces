@@ -8,80 +8,116 @@ import tijera from './images/tijera.png'
 import lagarto from './images/lagarto.png'
 import spock from './images/spock.png'
 import none from './images/none.png'
+import Resultados from './Resultados'
 
 class App extends React.Component {
     constructor(){ 
       super()
       this.state = {
+        mostrarResultados:false,
         jugador1: '',
         jugador2: '',
         ganador: '',
-        dosJugadores: true,
+        dosJugadores: false,
         arma1:'',
         arma2:''
       }
       this.handleSelection = this.handleSelection.bind(this)
+      this.contiendaContraBot = this.contiendaContraBot.bind(this)
+      this.handlePlay1=this.handlePlay1.bind(this)
+      this.handlePlay2=this.handlePlay2.bind(this)   
+      this.handleChange=this.handleChange.bind(this)
     }
+
+     handleChange(){
+       this.setState({
+         hidePlayground:true
+       })
+     }
 
      handleSelection =(arma,jugador)=> {
        if(jugador==="uno"){
       this.setState({
-        jugador1: arma
+        jugador1: arma,
+        arma1: arma
       })
-    } else {
+      this.state.arma1=arma
+    } else if(jugador==="dos") {
       this.setState({
-        jugador2: arma
+        jugador2: arma,
+        arma2: arma
       })
+      this.state.arma2=arma
     }
-    }
+  }
 
   handlePlay1(){
-    if(this.state.jugador1===''){
-     alert("Elige un arma!")
+    const {jugador1, dosJugadores} = this.state
+    if(jugador1===''){
+     alert("Jugador 1 elige un arma!")
     } else{
       this.setState({
-        arma1: this.state.jugador1,
-        jugador1: ''})
-      
-      
-      if(!this.state.dosJugadores){
-        this.contiendaContraBot()             
+        jugador1:''
+      })
+      this.state.jugador1=''
+      if(!dosJugadores){
+       this.contiendaContraBot()             
       } else {
         this.refs.play1.setAttribute("disabled","disabled")
-        this.refs.play2.removeAttribute("disabled")
+        
         document.getElementById("Piedra").disabled=true
         document.getElementById("Papel").disabled=true
         document.getElementById("Tijera").disabled=true
         document.getElementById("Lagarto").disabled=true
         document.getElementById("Spock").disabled=true
 
-        document.getElementById("Piedra2").disabled=false
-        document.getElementById("Papel2").disabled=false
-        document.getElementById("Tijera2").disabled=false
-        document.getElementById("Lagarto2").disabled=false
-        document.getElementById("Spock2").disabled=false
+  
       }
       this.resultados()
     }
   }
   
+  handlePlay2(){
+    const {jugador2} = this.state
+    if(jugador2===''){
+      alert("Jugador 2 elige un arma!")
+     } else{
+      this.setState({jugador2:''})
+      this.state.jugador2=''
+      this.refs.play2.setAttribute("disabled","disabled")
+      document.getElementById("Piedra2").disabled=true
+      document.getElementById("Papel2").disabled=true
+      document.getElementById("Tijera2").disabled=true
+      document.getElementById("Lagarto2").disabled=true
+      document.getElementById("Spock2").disabled=true
+  }
+  this.resultados()
+}
+
   contiendaContraBot(){
-    const armas= ["Piedra2" ,"Papel2" ,"Tijera2" ,"Lagarto2" ,"Spock2"]
-    this.setState({
-      jugador2: armas[Math.floor(Math.random() * armas.length)],
-      arma2: this.state.jugador2
-    })
+    const armas= ["Piedra" ,"Papel" ,"Tijera" ,"Lagarto" ,"Spock"]
+    const jugador2=  armas[Math.floor(Math.random() * armas.length)]
+    this.handleSelection(jugador2, "dos")   
+  
+  }
+  resultados(props,state){
+    const {arma1, arma2, jugador1,jugador2} = this.state
+
+    if(jugador1==='' &&
+       arma1!=='' &&
+       jugador2=== '' &&
+       arma2 !== ''){
+        this.mostrarResultados()
+       }
   }
 
-  resultados(){
-    this.setState({
-      ganador: ''
-    })
+  mostrarResultados = () => {
+    this.setState({mostrarResultados:true})
   }
 
   render(){
-    const {jugador1, jugador2} = this.state
-   
+    const {jugador1, jugador2, dosJugadores,mostrarResultados} = this.state
+    
 
     let 
      seleccion= <img src={
@@ -104,20 +140,32 @@ class App extends React.Component {
         jugador2 === "Lagarto" ? lagarto : spock 
         } className="img-arma-2" alt= {jugador2}></img>
       }
+     let readyP2;
+      if(!dosJugadores){
+        readyP2=<button ref="play2" type="button" className="btn btn-warning play2" onClick={e=>this.handlePlay2()} disabled>
+                  Listo!
+                </button>
+      }else{
+        readyP2=<button ref="play2" type="button" className="btn btn-warning play2" onClick={e=>this.handlePlay2()}>
+                  Listo!
+                </button>
+
+    }
 
       return (
+  <>      
     <div className="container-fluid">
         
-      <div className="d-flex">
+      <div className="d-flex" >
          
-        <div className="col container player1"> 
+        <div className="col container player"> 
           <div className="d-flex">
             <div className="armas">
-              <Arma nombre="Piedra"  j="uno" handleSelection={this.handleSelection}  />
-              <Arma nombre="Papel"   j="uno" handleSelection={this.handleSelection} />
-              <Arma nombre="Tijera"  j="uno" handleSelection={this.handleSelection}  />
-              <Arma nombre="Lagarto" j="uno" handleSelection={this.handleSelection}  />
-              <Arma nombre="Spock"   j="uno" handleSelection={this.handleSelection} />
+              <Arma nombre="Piedra"  j="uno"  handleSelection={this.handleSelection}  />
+              <Arma nombre="Papel"   j="uno"  handleSelection={this.handleSelection} />
+              <Arma nombre="Tijera"  j="uno"  handleSelection={this.handleSelection}  />
+              <Arma nombre="Lagarto" j="uno"  handleSelection={this.handleSelection}  />
+              <Arma nombre="Spock"   j="uno"  handleSelection={this.handleSelection} />
             </div>
             <div className="seleccion">
               {seleccion}
@@ -128,29 +176,25 @@ class App extends React.Component {
           </button>
         </div>
           
-        <div className="col container player1">
+        <div className="col container player">
           <div className="d-flex">
             <div className="seleccion2">
               {seleccion2}
             </div>
             <div className="armas2">
-              <Arma nombre="Piedra"  j="dos" handleSelection={this.handleSelection} />
-              <Arma nombre="Papel"   j="dos" handleSelection={this.handleSelection} />
-              <Arma nombre="Tijera"  j="dos" handleSelection={this.handleSelection} />
-              <Arma nombre="Lagarto" j="dos" handleSelection={this.handleSelection} />
-              <Arma nombre="Spock"   j="dos" handleSelection={this.handleSelection} />
+              <Arma nombre="Piedra"  j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
+              <Arma nombre="Papel"   j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
+              <Arma nombre="Tijera"  j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
+              <Arma nombre="Lagarto" j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
+              <Arma nombre="Spock"   j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
             </div>
           </div>  
-          <button ref="play2" type="button" className="btn btn-warning play2" onClick={e=>this.handlePlay2()} disabled>
-            Listo!
-          </button>
+          {readyP2}
         </div>
-        
-         
-         
       </div>
-          
     </div>
+   {mostrarResultados && <Resultados />}
+   </> 
   );
   }
 }
