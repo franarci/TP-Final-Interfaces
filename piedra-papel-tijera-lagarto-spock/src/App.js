@@ -201,7 +201,10 @@ class App extends React.Component {
   <>      
     <div className="container-fluid">  
       <div className="mode-container d-flex"> 
-        {gameMode}    
+        {gameMode}  
+        <div className="col-sm-7"/>  
+        <a className="col-sm-3 reglas" href="https://bigbangtheory.fandom.com/es/wiki/Piedra,_Papel,_Tijera,_Lagarto_o_Spock">Reglas</a>
+          
       </div>
       <div className="d-flex players conainer-fluid" >        
         

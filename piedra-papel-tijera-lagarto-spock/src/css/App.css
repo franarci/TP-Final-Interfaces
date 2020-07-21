@@ -1,5 +1,10 @@
 
- 
+
+ .reglas{
+   margin-top: 10px;
+   float: right;
+   color: darkgoldenrod;
+ }
  
  .players{
    position: inherit;
