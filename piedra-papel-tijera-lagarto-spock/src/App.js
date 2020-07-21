@@ -33,10 +33,6 @@ class App extends React.Component {
       this.partidaNueva=this.partidaNueva.bind(this)
     }
 
-    componentDidMount(){
-      localStorage.setItem("Score1","0")
-      localStorage.setItem("Score2","0")
-    }
 
      handleSelection =(arma,jugador)=> {
        if(jugador==="uno"){
@@ -46,6 +42,7 @@ class App extends React.Component {
       })
       this.state.arma1=arma
     } else if(jugador==="dos") {
+
       this.setState({
         jugador2: arma,
         arma2: arma
@@ -132,6 +129,8 @@ class App extends React.Component {
   changeMode(){
     this.setState({
       dosJugadores: !this.state.dosJugadores,
+      jugador1:'',
+      jugador2:'',
       score1:'',
       score2:''
     })
@@ -152,9 +151,6 @@ class App extends React.Component {
     });
     }
   }
-  componentDidUpdate(){
-    console.log("updated", this.state)
-  }
 
   render(){
     const {jugador1, jugador2, dosJugadores,mostrarResultados} = this.state
@@ -167,12 +163,12 @@ class App extends React.Component {
       jugador1 === "Tijera" ? tijera  :
       jugador1 === "Lagarto" ? lagarto : 
       jugador1 === "Spock" ? spock : none
-      } className="col img-arma seleccion" alt= {jugador1}></img>
+      } className="row img-arma seleccion" alt= {jugador1}></img>
 
    let seleccion2;
 
       if(jugador2===''){
-       seleccion2=<img className="col none" src={none}></img>
+       seleccion2=<img className="row none" src={none}></img>
       } else{
         seleccion2=  <img src={
         jugador2 === "Piedra" ? piedra :
@@ -183,54 +179,68 @@ class App extends React.Component {
       }
      let readyP2;
       if(!dosJugadores){
-        readyP2=<button ref="play2" type="button" className="button btn btn-warning play2 ready" onClick={e=>this.handlePlay2()} disabled>
-                  Listo!
+        readyP2=<button ref="play2" type="button" className="col-sm-8 button btn btn-warning play2 ready" onClick={e=>this.handlePlay2()} disabled>
+                 <b>Jugador 2 Listo!</b>
                 </button>
       }else{
-        readyP2=<button ref="play2" type="button" className="button btn btn-warning play2 ready" onClick={e=>this.handlePlay2()}>
-                  Listo!
+        readyP2=<button ref="play2" type="button" className="col-sm-8 button btn btn-warning play2 ready" onClick={e=>this.handlePlay2()}>
+                 <b>Jugador 2 Listo!</b>
                 </button>
 
     }
 
     let gameMode;
       if(this.state.dosJugadores){
-        gameMode = <button type="button" className="btn btn-warning mode" onClick={e=> this.changeMode()}>1P</button>
+        gameMode = <button type="button" className="btn btn-warning mode col-sm-3" onClick={e=> this.changeMode()}>Un Jugador</button>
       } else {
-        gameMode = <button type="button" className="btn btn-warning mode" onClick={e=> this.changeMode()}>2P</button>
+        gameMode = <button type="button" className="btn btn-warning mode col-sm-3" onClick={e=> this.changeMode()}>Dos Jugadores</button>
       }
 
 
       return (
   <>      
-    <div className="container-fluid">       
-      <div className="d-flex players" >        
-        <div className="col player"> 
-          <div className="d-flex flex-player">
-          <div className="d-flex wins">  
-          <img src={corona} className="wins col"></img>
-      <a className="col">{this.state.score1}</a>
-          </div> 
-            <div className=" col armas1">
-              <Arma nombre="Piedra"  j="uno"  handleSelection={this.handleSelection}  />
-              <Arma nombre="Papel"   j="uno"  handleSelection={this.handleSelection} />
-              <Arma nombre="Tijera"  j="uno"  handleSelection={this.handleSelection}  />
-              <Arma nombre="Lagarto" j="uno"  handleSelection={this.handleSelection}  />
-              <Arma nombre="Spock"   j="uno"  handleSelection={this.handleSelection} />
+    <div className="container-fluid">  
+      <div className="mode-container d-flex"> 
+        {gameMode}    
+      </div>
+      <div className="d-flex players conainer-fluid" >        
+        
+        <div className="col player container-fluid"> 
+          <div className="d-flex col-sm-1">  
+              <img src={corona} className="wins col-sm5"></img>
+              <a className="col-sm-1">{this.state.score1}</a>
+          </div>
+          <div className="d-flex flex-player container-fluid">
+            <div className ="row armas-imagen">
+              <div className=" col armas1">
+                <Arma nombre="Piedra"  j="uno"  handleSelection={this.handleSelection}  />
+                <Arma nombre="Papel"   j="uno"  handleSelection={this.handleSelection} />
+                <Arma nombre="Tijera"  j="uno"  handleSelection={this.handleSelection}  />
+                <Arma nombre="Lagarto" j="uno"  handleSelection={this.handleSelection}  />
+                <Arma nombre="Spock"   j="uno"  handleSelection={this.handleSelection} />
+              </div>
+              <div className="col sel">
+                {seleccion}
+              </div>
             </div>
-              {seleccion}
-          </div>
+           </div>
           <div className="row flex-button">
-          <button ref="play1" type="button" className="button btn btn-warning play1 ready" onClick={e=>this.handlePlay1()}>
-              Listo!
-          </button>
-          </div>
+              <button ref="play1" type="button" className="col-sm-8 button btn btn-warning play1 ready" onClick={e=>this.handlePlay1()}>
+                <b>Jugador 1 Listo!</b>
+              </button>
+          </div>  
         </div>
           
-        <div className="col  player">
-          <div className="d-flex flex-player">
-         
-          {seleccion2}
+        <div className="col player container-fluid">
+          <div className="d-flex col-sm-1">  
+              <img src={corona} className="wins col-sm5"></img>
+              <a className="col-sm-1">{this.state.score2}</a>
+          </div>
+          <div className="d-flex flex-player container-fluid">
+          <div className ="row armas-imagen">
+            <div className="col sel">
+              {seleccion2}
+            </div>
             <div className="col armas2">
               <Arma nombre="Piedra"  j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
               <Arma nombre="Papel"   j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
@@ -238,18 +248,15 @@ class App extends React.Component {
               <Arma nombre="Lagarto" j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
               <Arma nombre="Spock"   j="dos" dosJugadores={this.state.dosJugadores} handleSelection={ this.handleSelection} />
             </div>
-            <div className="d-flex wins">  
-          <img src={corona} className="wins col"></img>
-          <a className="col">{this.state.score2}</a>
-          </div> 
-            
+           </div> 
           </div> 
           <div className="row flex-button">
           { readyP2}
           </div>
         </div>
-        {gameMode}
+       
       </div>
+      
     </div>
    {mostrarResultados && <Resultados jugador1={this.state.arma1} jugador2={this.state.arma2} partidaNueva={this.partidaNueva} guardarGanador={this.guardarGanador}/>}
    </> 

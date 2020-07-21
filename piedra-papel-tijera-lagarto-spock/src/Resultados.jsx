@@ -12,7 +12,7 @@ function Resultados({jugador1,jugador2,partidaNueva,guardarGanador}) {
   
    
   function setGanador(jugador){
-    return(<h2><b>{jugador}</b></h2>)
+    return(<h2 className="col-sm-12">{jugador}</h2>)
     }
 
  function eleccionDeGanador() {
@@ -77,20 +77,22 @@ function Resultados({jugador1,jugador2,partidaNueva,guardarGanador}) {
         } className="img-arma" alt= {jugador2}></img>
 
     const winner = eleccionDeGanador()
-  
+    
     return(
-        <div className="background">
-            <div className="resultados container">
-              <h1>Resultados</h1>
+        <div className="background ">
+            <div className="resultados container-fluid">
+              <div className="row h1-res">
+                <h1 className="col-sm-12">Resultados</h1>
+              </div>
               <div className="d-flex row res-container">
-                <div className="col img1">{imagen1}</div>    
-                <div className="col img2">{imagen2}</div>
+                <div className="col-sm-6 img1">{imagen1}</div>    
+                <div className="col-sm-6 img2">{imagen2}</div>
               </div>
               <div className="row div-ganador">
                   {winner}
               </div>
               <div className="row div-button">
-                <button type="button" className="btn btn-warning" onClick={e=>partidaNueva()}>Jugar otra vez</button>
+                <button type="button" className="btn btn-warning col-sm-12" onClick={e=>partidaNueva()}>Jugar otra vez</button>
               </div>
             </div>    
         </div>

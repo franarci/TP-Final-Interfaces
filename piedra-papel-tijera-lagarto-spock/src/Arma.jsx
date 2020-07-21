@@ -5,7 +5,7 @@ function Arma ({nombre,handleSelection,j,dosJugadores}) {
 
   if(j==="uno") {
     return(
-      <div className= {`arma-${nombre} d-flex`}> 
+      <div className= {`arma-${nombre} `}> 
             <button id={`${nombre}`} type="button" className ="button arma" 
                 onClick={event =>
                   handleSelection(nombre,j)} >
