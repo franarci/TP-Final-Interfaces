@@ -10,7 +10,7 @@ Para poder descargar y posteriormente correr este proyecto es necesario tener in
 ```sh
 git clone https://github.com/franarci/unq-ui-francisco-arciniega-trabajo-final.git
 cd piedra-papel-tijera-lagarto-spock
-npm install bootstrap
+npm install
 ```
 ## Run
 
